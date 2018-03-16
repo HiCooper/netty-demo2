@@ -1,0 +1,15 @@
+server:
+  port: 19000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: 'http://eureka1:8762/eureka/,http://eureka2:8763/eureka/'
+
+spring:
+  application:
+    name: cpts-service-fep
+
+netty:
+  server:
+    port: 8379
