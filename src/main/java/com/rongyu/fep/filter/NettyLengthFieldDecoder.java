@@ -1,7 +1,5 @@
 package com.rongyu.fep.filter;
 
-import com.rongyu.common.utils.ByteUtil;
-import com.rongyu.common.utils.StringUtils;
 import com.rongyu.fep.models.Message;
 import com.rongyu.fep.models.Session;
 import io.netty.buffer.ByteBuf;
@@ -10,7 +8,9 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -61,7 +61,7 @@ public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
             byte[] bytes = new byte[head.readableBytes()];
             head.readBytes(bytes);
             //计算报文正文字节长度
-            length = (ByteUtil.getByteIntBinary(bytes[0]) * 256 + ByteUtil.getByteIntBinary(bytes[1])) / 2;
+            length = ((((bytes[0]) & 0xff) << 8) + (bytes[1] & 0xff)) / 2;
             session.setLength(length);
         }
 
@@ -74,13 +74,15 @@ public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
             buf.readBytes(b);
             String thisStr = new String(b, "UTF-8");
 
-            session.setBody(StringUtils.ifNullToBlank(session.getBody()) + thisStr);
+            session.setBody(StringUtils.trimToEmpty(session.getBody()) + thisStr);
             hashMap.putIfAbsent(session.getId(), session);
             channels.add(ctx.channel());
 
             //标记为已读取过数据
             session.setTag(1);
 
+            System.out.println(session.getBody());
+            System.out.println(session.getBody().length());
             if (session.getBody().length() == length) {
                 Message message = new Message();
                 message.setLength(length);
