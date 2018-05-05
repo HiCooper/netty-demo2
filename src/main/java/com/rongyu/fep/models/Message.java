@@ -6,7 +6,7 @@ import lombok.Setter;
 /**
  * 报文实体类头部
  *
- * @author 西
+ * @author Berry_Cooper
  */
 @Getter
 @Setter
