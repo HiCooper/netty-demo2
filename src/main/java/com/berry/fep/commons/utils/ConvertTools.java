@@ -1,9 +1,8 @@
-package com.rongyu.fep.commons.utils;
+package com.berry.fep.commons.utils;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class ConvertTools {
 

@@ -1,4 +1,4 @@
-package com.rongyu.fep;
+package com.berry.fep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

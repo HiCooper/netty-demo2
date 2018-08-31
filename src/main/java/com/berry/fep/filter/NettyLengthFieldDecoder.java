@@ -1,7 +1,7 @@
-package com.rongyu.fep.filter;
+package com.berry.fep.filter;
 
-import com.rongyu.fep.models.Message;
-import com.rongyu.fep.models.Session;
+import com.berry.fep.models.Message;
+import com.berry.fep.models.Session;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.group.ChannelGroup;
@@ -10,7 +10,6 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**

@@ -1,6 +1,6 @@
-package com.rongyu.fep.commons.parse;
+package com.berry.fep.commons.parse;
 
-import com.rongyu.fep.models.Message;
+import com.berry.fep.models.Message;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

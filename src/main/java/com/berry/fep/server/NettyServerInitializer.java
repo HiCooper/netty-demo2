@@ -1,14 +1,11 @@
-package com.rongyu.fep.server;
+package com.berry.fep.server;
 
 
-import com.rongyu.fep.filter.NettyEncoder;
-import com.rongyu.fep.filter.NettyLengthFieldDecoder;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import com.berry.fep.filter.NettyEncoder;
+import com.berry.fep.filter.NettyLengthFieldDecoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 
 /**
  * Server ChannelInitializer

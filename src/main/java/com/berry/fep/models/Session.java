@@ -1,7 +1,6 @@
-package com.rongyu.fep.models;
+package com.berry.fep.models;
 
 import io.netty.channel.Channel;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

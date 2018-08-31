@@ -1,4 +1,4 @@
-package com.rongyu.fep.commons.utils;
+package com.berry.fep.commons.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

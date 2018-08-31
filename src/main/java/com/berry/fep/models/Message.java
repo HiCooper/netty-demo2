@@ -1,4 +1,4 @@
-package com.rongyu.fep.models;
+package com.berry.fep.models;
 
 import lombok.Getter;
 import lombok.Setter;
