@@ -49,7 +49,7 @@ public class ConvertTools {
     private static final int[] BITS = {BIT_0, BIT_1, BIT_2, BIT_3, BIT_4, BIT_5, BIT_6, BIT_7};
 
     /**
-     * 把16进制字符串转换成字节数组byte[],从左向右，两位一算，若多出一位将丢弃处理
+     * 把16进制字符串转换成字节数组byte[],从左向右，两位一算，若不是2的倍数，前面补0
      * 其中16进制输入，可以为小写，将自动转换为大写并操作
      *
      * @param hexStr 16进制字符串
@@ -230,10 +230,8 @@ public class ConvertTools {
      * @param args
      */
     public static void main(String[] args) {
-        byte[] bytes = hexStringToByte("1e306");
-        byte[] bytes2 = hexStringToByte("01e306");
+        byte[] bytes = hexStringToByte("0010");
         System.out.println(bytesToInt(bytes));
-        System.out.println(bytesToInt(bytes2));
     }
 
 

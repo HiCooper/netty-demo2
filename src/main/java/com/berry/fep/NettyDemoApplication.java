@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author berry
  */
 @SpringBootApplication
-public class FepApplication {
+public class NettyDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FepApplication.class, args);
+		SpringApplication.run(NettyDemoApplication.class, args);
 	}
 }

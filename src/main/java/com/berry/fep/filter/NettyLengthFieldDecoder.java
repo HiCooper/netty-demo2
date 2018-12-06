@@ -9,6 +9,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.Consts;
 
 import java.util.HashMap;
 
@@ -56,22 +57,26 @@ public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
             if (buffer.readableBytes() < HEADER_SIZE) {
                 return null;
             }
+            // 截取头部 ，buffer将会被修改（减少了读取的头部信息）
             ByteBuf head = buffer.readBytes(HEADER_SIZE);
+            // 设置读取头部的字节长度
             byte[] bytes = new byte[head.readableBytes()];
+            // 将 head 赋值 给 bytes
             head.readBytes(bytes);
             //计算报文正文字节长度
             length = ((((bytes[0]) & 0xff) << 8) + (bytes[1] & 0xff)) / 2;
+            System.out.println("length:"+length);
             session.setLength(length);
         }
 
         if (session.getBody() == null || session.getBody().length() < length) {
             //没读完
-            //本次读取的字节长度
+            //本次可读取的字节长度
             int thisBuf = buffer.readableBytes();
             ByteBuf buf = buffer.readBytes(thisBuf);
             byte[] b = new byte[buf.readableBytes()];
             buf.readBytes(b);
-            String thisStr = new String(b, "UTF-8");
+            String thisStr = new String(b, Consts.UTF_8);
 
             session.setBody(StringUtils.trimToEmpty(session.getBody()) + thisStr);
             hashMap.putIfAbsent(session.getId(), session);
@@ -80,9 +85,8 @@ public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
             //标记为已读取过数据
             session.setTag(1);
 
-            System.out.println(session.getBody());
-            System.out.println(session.getBody().length());
             if (session.getBody().length() == length) {
+                // 结束decode
                 Message message = new Message();
                 message.setLength(length);
                 message.setBody(session.getBody());
