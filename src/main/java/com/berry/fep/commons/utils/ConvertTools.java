@@ -224,16 +224,6 @@ public class ConvertTools {
         return result;
     }
 
-    /**
-     * 验证 16进制字符串转字节数组 、 字节数组转整型
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        byte[] bytes = hexStringToByte("0010");
-        System.out.println(bytesToInt(bytes));
-    }
-
 
     /**
      * 整型转字节数组
