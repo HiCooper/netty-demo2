@@ -3,6 +3,7 @@ package com.berry.fep.commons.utils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class ConvertTools {
 
@@ -320,5 +321,21 @@ public class ConvertTools {
         }
 
         return result;
+    }
+
+    /**
+     * 16进制转换成ASCII码
+     *
+     * @param hex 16进制字符串
+     * @return ASCII码
+     */
+    public static String convertHexToASCIIString(String hex) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hex.length() - 1; i += 2) {
+            String output = hex.substring(i, (i + 2));
+            int decimal = Integer.parseInt(output, 16);
+            sb.append((char) decimal);
+        }
+        return sb.toString();
     }
 }

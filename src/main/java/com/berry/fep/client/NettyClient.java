@@ -41,7 +41,7 @@ public class NettyClient {
             Channel channel = bootstrap.connect(host, port).sync().channel();
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
-                channel.writeAndFlush(ConvertTools.bytesToHexString(in.readLine().getBytes()));
+                channel.writeAndFlush(in.readLine());
             }
         } catch (Exception e) {
             e.printStackTrace();
