@@ -65,7 +65,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
         Channel incoming = ctx.channel();
         String result = JsonUtils.toJson(message);
         System.out.println(result);
-        incoming.writeAndFlush(ConvertTools.bytesToHexString(result != null ? result.getBytes() : new byte[0]));
+        incoming.writeAndFlush(result);
     }
 
     /**
