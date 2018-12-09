@@ -52,6 +52,8 @@ public class ConvertTools {
     /**
      * 把16进制字符串转换成字节数组byte[],从左向右，两位一算，若不是2的倍数，前面补0
      * 其中16进制输入，可以为小写，将自动转换为大写并操作
+     * 如：68656c6c6f -> [104, 101, 108, 108, 111]
+     * 对应的 16进制转10进制，16进制68 = 10进制104
      *
      * @param hexStr 16进制字符串
      * @return 字节数组
@@ -63,11 +65,33 @@ public class ConvertTools {
         char[] chars = hexStr.toUpperCase().toCharArray();
         for (int i = 0; i < len; i++) {
             int pos = i * 2;
-            //两位一算，pos位对应值左移4位 与 pos+1位对应值进行与运算，得出对应16进制两位字符的10进制值
+            //两位一算，pos位对应值左移4位 与 pos+1位对应值进行 '按位或' 运算，得出对应16进制两位字符的10进制值
             result[i] = (byte) (charToByte(chars[pos]) << 4 | charToByte(chars[pos + 1]));
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(hexStringToByte("68656c6c6f")));
+    }
+
+    /**
+     * 16进制转换成ASCII码（显示图形）
+     * 如：68656c6c6f -> hello
+     *
+     * @param hex 16进制字符串
+     * @return ASCII码
+     */
+    public static String convertHexToASCIIString(String hex) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hex.length() - 1; i += 2) {
+            String output = hex.substring(i, (i + 2));
+            int decimal = Integer.parseInt(output, 16);
+            sb.append((char) decimal);
+        }
+        return sb.toString();
+    }
+
 
     /**
      * 单个字符转整型
@@ -302,7 +326,7 @@ public class ConvertTools {
      * @return
      */
     public static String convertBinaryToHexString(String binaryStr) {
-        return ConvertTools.bytesToHexString(ConvertTools.charsToBytes(binaryStr.toCharArray()));
+        return bytesToHexString(charsToBytes(binaryStr.toCharArray()));
     }
 
     /**
@@ -313,29 +337,11 @@ public class ConvertTools {
      */
 
     public static int hexStringToOctal(String hex) {
-
         int result = 0;
-
         for (char c : hex.toCharArray()) {
             result = (result << 4) + Character.digit(c, 16);
         }
-
         return result;
     }
 
-    /**
-     * 16进制转换成ASCII码
-     *
-     * @param hex 16进制字符串
-     * @return ASCII码
-     */
-    public static String convertHexToASCIIString(String hex) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < hex.length() - 1; i += 2) {
-            String output = hex.substring(i, (i + 2));
-            int decimal = Integer.parseInt(output, 16);
-            sb.append((char) decimal);
-        }
-        return sb.toString();
-    }
 }

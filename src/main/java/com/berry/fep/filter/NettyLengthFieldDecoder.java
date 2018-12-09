@@ -51,6 +51,7 @@ public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
      * 长度：22
      * 22的16进制为16，需补足2位，则头部最终结果是 0016
      * 组合后 请求参数为 001668656c6c6f2c6e65747479
+     * 注意：10进制转16进制，与可显示字符（图形）转16进制的区别
      * @param ctx
      * @param msg
      * @return
