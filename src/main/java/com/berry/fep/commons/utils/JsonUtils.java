@@ -64,7 +64,7 @@ public class JsonUtils {
      * @return
      * @throws Exception
      */
-    public static <T> Map<String, Object> json2map(String jsonStr) throws Exception {
+    public static <T> Map json2map(String jsonStr) throws Exception {
         return com.alibaba.fastjson.JSON.parseObject(jsonStr, Map.class);
     }
 
