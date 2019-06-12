@@ -1,7 +1,6 @@
 package com.berry.fep.server;
 
-import com.berry.fep.commons.utils.ConvertTools;
-import com.berry.fep.commons.utils.JsonUtils;
+import com.alibaba.fastjson.JSON;
 import com.berry.fep.models.Message;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
@@ -59,11 +58,11 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
      * @param message
      */
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, Message message) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Message message) throws Exception {
         this.logger.info("messageInfo \r\nServerHandler:" + this + " \r\nChannel:" + ctx + " \r\nmessage:" + message);
         //处理解码后的报文，并应答客户端
         Channel incoming = ctx.channel();
-        String result = JsonUtils.toJson(message);
+        String result = JSON.toJSONString(message);
         System.out.println(result);
         incoming.writeAndFlush(result);
     }

@@ -1,15 +1,10 @@
 package com.berry.fep.models;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * 报文实体类头部
  *
  * @author Berry_Cooper
  */
-@Getter
-@Setter
 public class Message {
 
     /**

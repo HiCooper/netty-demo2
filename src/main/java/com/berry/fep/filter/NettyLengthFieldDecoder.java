@@ -1,6 +1,5 @@
 package com.berry.fep.filter;
 
-import com.berry.fep.commons.utils.ConvertTools;
 import com.berry.fep.models.Message;
 import com.berry.fep.models.Session;
 import io.netty.buffer.ByteBuf;
@@ -12,12 +11,11 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Consts;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
  * @author berry
+ * 定长解码器
  */
 public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
 
@@ -36,7 +34,8 @@ public class NettyLengthFieldDecoder extends LengthFieldBasedFrameDecoder {
      * @param lengthFieldLength   记录该帧数据长度的字段本身的长度 2
      * @param lengthAdjustment    修改帧数据长度字段中定义的值，可以为负数
      * @param initialBytesToStrip 解析的时候需要跳过的字节数
-     * @param failFast            为true，当frame长度超过maxFrameLength时立即报TooLongFrameException异常，为false，读取完整个帧再报异常
+     * @param failFast            为true，当frame长度超过maxFrameLength时立即报TooLongFrameException异常，
+     *                            为false，读取完整个帧再报异常
      */
     public NettyLengthFieldDecoder(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength,
                                    int lengthAdjustment, int initialBytesToStrip, boolean failFast) {

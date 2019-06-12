@@ -1,15 +1,11 @@
 package com.berry.fep.models;
 
 import io.netty.channel.Channel;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author Berry_Cooper
  * @date 2018/2/1.
  */
-@Getter
-@Setter
 public class Session {
 
     /**

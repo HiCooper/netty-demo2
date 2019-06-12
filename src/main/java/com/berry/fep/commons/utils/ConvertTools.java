@@ -71,10 +71,6 @@ public class ConvertTools {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(hexStringToByte("68656c6c6f")));
-    }
-
     /**
      * 16进制转换成ASCII码（显示图形）
      * 如：68656c6c6f -> hello
@@ -121,7 +117,7 @@ public class ConvertTools {
      * @return
      */
     public static String bytesToHexString(byte[] bytes) {
-        StringBuffer sb = new StringBuffer(bytes.length);
+        StringBuilder sb = new StringBuilder(bytes.length);
         String sTemp;
         for (int i = 0; i < bytes.length; i++) {
             sTemp = Integer.toHexString(0xFF & bytes[i]);
@@ -173,7 +169,7 @@ public class ConvertTools {
      * @return
      */
     public static String bcd2Str(byte[] bytes) {
-        StringBuffer temp = new StringBuffer(bytes.length * 2);
+        StringBuilder temp = new StringBuilder(bytes.length * 2);
 
         for (int i = 0; i < bytes.length; i++) {
             temp.append((byte) ((bytes[i] & 0xf0) >>> 4));

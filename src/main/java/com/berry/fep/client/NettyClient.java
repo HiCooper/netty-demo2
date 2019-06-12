@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  * Use：
  */
 public class NettyClient {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new NettyClient("localhost", 8379).run();
     }
 
@@ -31,7 +31,7 @@ public class NettyClient {
         this.port = port;
     }
 
-    public void run() throws Exception {
+    public void run() {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap bootstrap = new Bootstrap()
@@ -45,8 +45,6 @@ public class NettyClient {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            group.shutdownGracefully();
         }
 
     }
